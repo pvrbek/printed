@@ -8,7 +8,7 @@ const PosterList = props => {
     <Fragment>
         <div className="hero is-primary">
             <div className="hero-body container">
-                <h4 className="title">Pick your poster</h4>
+                <h4 className="title">Posters on sale</h4>
             </div>
         </div>
         <br />
