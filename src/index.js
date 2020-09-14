@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './theme/theme.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'bulma/css/bulma.css'
 
 ReactDOM.render(
   <React.StrictMode>

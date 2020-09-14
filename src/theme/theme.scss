@@ -1,0 +1,28 @@
+@import "mixins";
+
+body {
+  .hero {
+    &.is-primary {
+      background-color: $primary-color;
+      color: $nav-item-color;
+      font-weight: bold;
+    }
+  }
+
+  .navbar-brand {
+    .navbar-item {
+      text-decoration: none;
+      color: $nav-item-color;
+
+      &:hover {
+        text-decoration: none;
+        color: $nav-item-color;
+      }
+
+      &:focus {
+        text-decoration: none;
+        color: $nav-item-color;
+      }
+    }
+  }
+}
