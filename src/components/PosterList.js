@@ -3,7 +3,7 @@ import PosterItem from "./PosterItem";
 import withContext from "../withContext";
 
 const PosterList = props => {
-    const { products } = props.context;
+    const { posters } = props.context;
     return (
     <Fragment>
         <div className="hero is-primary">
@@ -14,10 +14,10 @@ const PosterList = props => {
         <br />
         <div className="container">
             <div className="column columns is-multiline">
-                {products && products.length ? (
-                products.map((product, index) => (
+                {posters && posters.length ? (
+                posters.map((poster, index) => (
                 <PosterItem
-                product={product}
+                poster={poster}
                 key={index}
                 addToCart={props.context.addToCart}
                 />

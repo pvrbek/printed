@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 const PosterItem = props => {
-    const { product } = props;
+    const { poster } = props;
     return (
     <div className=" column is-half">
         <div className="box">
@@ -15,12 +15,12 @@ const PosterItem = props => {
                 </div>
                 <div className="media-content">
                     <b style={{ textTransform: "capitalize" }}>
-                        {product.name}{" "}
-                        <span className="tag is-primary">${product.price}</span>
+                        {poster.name}{" "}
+                        <span className="tag is-primary">${poster.price}</span>
                     </b>
-                    <div>{product.shortDesc}</div>
-                    {product.stock > 0 ? (
-                    <small>{product.stock + " Available"}</small>
+                    <div>{poster.shortDesc}</div>
+                    {poster.stock > 0 ? (
+                    <small>{poster.stock + " Available"}</small>
                     ) : (
                     <small className="has-text-danger">Out Of Stock</small>
                     )}
@@ -29,8 +29,8 @@ const PosterItem = props => {
                         className="button is-small is-outlined is-primary   is-pulled-right"
                         onClick={() =>
                         props.addToCart({
-                            id: product.name,
-                            product,
+                            id: poster.name,
+                            poster,
                             amount: 1
                         })
                         }

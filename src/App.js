@@ -12,7 +12,7 @@ class App extends Component {
         super(props);
         this.state = {
             user: null,
-            products: [],
+            posters: [],
             cart: {}
         };
         this.routerRef = React.createRef();
@@ -20,14 +20,14 @@ class App extends Component {
 
     componentDidMount() {
         let user = localStorage.getItem("user");
-        let products = localStorage.getItem("products");
+        let posters = localStorage.getItem("posters");
         let cart = localStorage.getItem("cart");
 
         user = user ? JSON.parse(user) : null;
-        products = products ? JSON.parse(products) : data.initProducts;
+        posters = posters ? JSON.parse(posters) : data.initProducts;
         cart = cart ? JSON.parse(cart) : {};
 
-        this.setState({user, products, cart});
+        this.setState({user, posters, cart});
     }
 
     login = (usn, pwd) => {
@@ -45,11 +45,11 @@ class App extends Component {
         this.setState({user: null});
         localStorage.removeItem("user");
     };
-    addProduct = (product, callback) => {
-        let products = this.state.products.slice();
-        products.push(product);
-        localStorage.setItem("products", JSON.stringify(products));
-        this.setState({products}, () => callback && callback());
+    addProduct = (poster, callback) => {
+        let posters = this.state.posters.slice();
+        posters.push(poster);
+        localStorage.setItem("posters", JSON.stringify(posters));
+        this.setState({posters}, () => callback && callback());
     };
     addToCart = cartItem => {
         let cart = this.state.cart;
@@ -58,8 +58,8 @@ class App extends Component {
         } else {
             cart[cartItem.id] = cartItem;
         }
-        if (cart[cartItem.id].amount > cart[cartItem.id].product.stock) {
-            cart[cartItem.id].amount = cart[cartItem.id].product.stock;
+        if (cart[cartItem.id].amount > cart[cartItem.id].poster.stock) {
+            cart[cartItem.id].amount = cart[cartItem.id].poster.stock;
         }
         localStorage.setItem("cart", JSON.stringify(cart));
         this.setState({cart});
@@ -81,13 +81,13 @@ class App extends Component {
             return;
         }
         const cart = this.state.cart;
-        const products = this.state.products.map(p => {
+        const posters = this.state.posters.map(p => {
             if (cart[p.name]) {
                 p.stock = p.stock - cart[p.name].amount;
             }
             return p;
         });
-        this.setState({products});
+        this.setState({posters});
         this.clearCart();
     };
 
@@ -134,11 +134,11 @@ class App extends Component {
                         <div className={`navbar-menu ${
                         this.state.showMenu ? "is-active" : ""
                         }`}>
-                            <Link to="/products" className="navbar-item">
+                            <Link to="/posters" className="navbar-item">
                                 Posters
                             </Link>
                             {this.state.user && this.state.user.accessLevel < 1 && (
-                            <Link to="/add-product" className="navbar-item">
+                            <Link to="/add-poster" className="navbar-item">
                                 Add Poster
                             </Link>
                             )}
@@ -162,8 +162,8 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={PosterList}/>
                         <Route exact path="/login" component={AdminLogin}/>
-                        <Route exact path="/products" component={PosterList}/>
-                        <Route exact path="/add-product" component={AddPoster}/>
+                        <Route exact path="/posters" component={PosterList}/>
+                        <Route exact path="/add-poster" component={AddPoster}/>
                         <Route exact path="/cart" component={PosterCart}/>
                     </Switch>
                 </div>
